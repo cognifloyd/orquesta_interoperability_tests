@@ -1,0 +1,70 @@
+$ st2 run z_st2_issues.mistral.orquesta
+..................................^CTraceback (most recent call last):
+  File "/usr/bin/st2", line 11, in <module>
+    sys.exit(main())
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/shell.py", line 464, in main
+    return Shell().run(argv)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/shell.py", line 402, in run
+    func(args)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/commands/resource.py", line 47, in decorate
+    return func(*args, **kwargs)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/commands/action.py", line 262, in run_and_print
+    execution = self.run(args, **kwargs)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/commands/resource.py", line 47, in decorate
+    return func(*args, **kwargs)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/commands/action.py", line 1011, in run
+    args=args, **kwargs)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/commands/action.py", line 470, in _get_execution_result
+    time.sleep(self.poll_interval)
+KeyboardInterrupt
+$ st2 execution list -n1
++----------------------------+-------------------------------+--------------+-----------------------+-------------------------------+---------------+
+| id                         | action.ref                    | context.user | status                | start_timestamp               | end_timestamp |
++----------------------------+-------------------------------+--------------+-----------------------+-------------------------------+---------------+
+| + 5bd7339d43cd6077432065a6 | z_st2_issues.mistral.orquesta | st2admin     | running (76s elapsed) | Mon, 29 Oct 2018 16:21:49 UTC |               |
++----------------------------+-------------------------------+--------------+-----------------------+-------------------------------+---------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+| Note: Only one action execution is displayed. Use -n/--last flag for more results.                                                                |
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+$ st2 execution get 5bd7339d43cd6077432065a6
+id: 5bd7339d43cd6077432065a6
+action.ref: z_st2_issues.mistral.orquesta
+parameters: None
+status: running (81s elapsed)
+start_timestamp: Mon, 29 Oct 2018 16:21:49 UTC
+end_timestamp: 
+result: 
+  output: null
++--------------------------+-----------------------+------+-----------------------------+-------------------------------+
+| id                       | status                | task | action                      | start_timestamp               |
++--------------------------+-----------------------+------+-----------------------------+-------------------------------+
+| 5bd7339d43cd601bbaa343a4 | running (81s elapsed) | None | z_st2_issues.simple.mistral | Mon, 29 Oct 2018 16:21:49 UTC |
++--------------------------+-----------------------+------+-----------------------------+-------------------------------+
+$ st2 execution cancel 5bd7339d43cd6077432065a6
+action execution with id 5bd7339d43cd6077432065a6 canceled.
+$ st2 execution get 5bd7339d43cd6077432065a6
+id: 5bd7339d43cd6077432065a6
+action.ref: z_st2_issues.mistral.orquesta
+parameters: None
+status: canceled (91s elapsed)
+start_timestamp: Mon, 29 Oct 2018 16:21:49 UTC
+end_timestamp: Mon, 29 Oct 2018 16:23:20 UTC
+result: 
+  output: null
++--------------------------+------------------------+------+-----------------------------+-------------------------------+
+| id                       | status                 | task | action                      | start_timestamp               |
++--------------------------+------------------------+------+-----------------------------+-------------------------------+
+| 5bd7339d43cd601bbaa343a4 | canceled (91s elapsed) | None | z_st2_issues.simple.mistral | Mon, 29 Oct 2018 16:21:49 UTC |
++--------------------------+------------------------+------+-----------------------------+-------------------------------+
+$ st2 execution get 5bd7339d43cd601bbaa343a4
+id: 5bd7339d43cd601bbaa343a4
+action.ref: z_st2_issues.simple.mistral
+parameters: 
+  src: mistral (via orquesta)
+status: canceled (91s elapsed)
+start_timestamp: Mon, 29 Oct 2018 16:21:49 UTC
+end_timestamp: Mon, 29 Oct 2018 16:23:20 UTC
+result: 
+  message: Action canceled by user.
+  user: st2admin
+

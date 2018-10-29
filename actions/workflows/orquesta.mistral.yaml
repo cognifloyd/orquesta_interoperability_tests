@@ -1,0 +1,16 @@
+---
+version: '2.0'
+
+z_st2_issues.orquesta.mistral:
+  description: Call orquesta from mistral
+  type: direct
+  tasks:
+    orquesta:
+      action: z_st2_issues.simple.orquesta
+      input:
+        src: 'orquesta (via mistral)'
+      on-success: mistral
+    mistral:
+      action: z_st2_issues.simple.mistral
+      input:
+        src: 'mistral (via mistral)'

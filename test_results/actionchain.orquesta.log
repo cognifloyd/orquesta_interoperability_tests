@@ -1,0 +1,76 @@
+$ st2 run z_st2_issues.actionchain.orquesta
+..
+id: 5bd7332d43cd6077432065a3
+action.ref: z_st2_issues.actionchain.orquesta
+parameters: None
+status: succeeded
+start_timestamp: Mon, 29 Oct 2018 16:19:57 UTC
+end_timestamp: Mon, 29 Oct 2018 16:20:00 UTC
+result: 
+  output: null
++-----------------------------+------------------------+-------------------------+---------------------------------+-------------------------------+
+| id                          | status                 | task                    | action                          | start_timestamp               |
++-----------------------------+------------------------+-------------------------+---------------------------------+-------------------------------+
+| + 5bd7332d43cd601bbaa3439b  | succeeded (2s elapsed) | actionchain             | z_st2_issues.simple.actionchain | Mon, 29 Oct 2018 16:19:57 UTC |
+|    5bd7332e43cd602c425fac30 | succeeded (0s elapsed) | Simple actionchain task | core.echo                       | Mon, 29 Oct 2018 16:19:58 UTC |
+| + 5bd7332f43cd601bbaa3439e  | succeeded (1s elapsed) | orquesta                | z_st2_issues.simple.orquesta    | Mon, 29 Oct 2018 16:19:59 UTC |
+|    5bd7333043cd601bbaa343a1 | succeeded (0s elapsed) | hello                   | core.echo                       | Mon, 29 Oct 2018 16:20:00 UTC |
++-----------------------------+------------------------+-------------------------+---------------------------------+-------------------------------+
+$ st2 execution get 5bd7332d43cd601bbaa3439b
+id: 5bd7332d43cd601bbaa3439b
+action.ref: z_st2_issues.simple.actionchain
+parameters: 
+  src: actionchain (via orquesta)
+status: succeeded (2s elapsed)
+result_task: Simple actionchain task
+result: 
+  failed: false
+  return_code: 0
+  stderr: ''
+  stdout: hello from actionchain (via orquesta)
+  succeeded: true
+start_timestamp: Mon, 29 Oct 2018 16:19:57 UTC
+end_timestamp: Mon, 29 Oct 2018 16:19:59 UTC
++--------------------------+------------------------+-------------------------+-----------+-------------------------------+
+| id                       | status                 | task                    | action    | start_timestamp               |
++--------------------------+------------------------+-------------------------+-----------+-------------------------------+
+| 5bd7332e43cd602c425fac30 | succeeded (0s elapsed) | Simple actionchain task | core.echo | Mon, 29 Oct 2018 16:19:58 UTC |
++--------------------------+------------------------+-------------------------+-----------+-------------------------------+
+$ st2 execution get 5bd7332e43cd602c425fac30
+id: 5bd7332e43cd602c425fac30
+status: succeeded (0s elapsed)
+parameters: 
+  message: hello from actionchain (via orquesta)
+result: 
+  failed: false
+  return_code: 0
+  stderr: ''
+  stdout: hello from actionchain (via orquesta)
+  succeeded: true
+$ st2 execution get 5bd7332f43cd601bbaa3439e
+id: 5bd7332f43cd601bbaa3439e
+action.ref: z_st2_issues.simple.orquesta
+parameters: 
+  src: orquesta (via orquesta)
+status: succeeded (1s elapsed)
+start_timestamp: Mon, 29 Oct 2018 16:19:59 UTC
+end_timestamp: Mon, 29 Oct 2018 16:20:00 UTC
+result: 
+  output: null
++--------------------------+------------------------+-------+-----------+-------------------------------+
+| id                       | status                 | task  | action    | start_timestamp               |
++--------------------------+------------------------+-------+-----------+-------------------------------+
+| 5bd7333043cd601bbaa343a1 | succeeded (0s elapsed) | hello | core.echo | Mon, 29 Oct 2018 16:20:00 UTC |
++--------------------------+------------------------+-------+-----------+-------------------------------+
+$ st2 execution get 5bd7333043cd601bbaa343a1
+id: 5bd7333043cd601bbaa343a1
+status: succeeded (0s elapsed)
+parameters: 
+  message: hello from orquesta (via orquesta)
+result: 
+  failed: false
+  return_code: 0
+  stderr: ''
+  stdout: hello from orquesta (via orquesta)
+  succeeded: true
+

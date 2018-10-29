@@ -1,0 +1,11 @@
+---
+name: simple.actionchain
+description: Simple actionchain workflow
+runner_type: action-chain
+enabled: true
+entry_point: workflows/simple.actionchain.yaml
+parameters:
+  src:
+    description: something
+    type: string
+    default: actionchain

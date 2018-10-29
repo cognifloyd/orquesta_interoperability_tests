@@ -1,0 +1,8 @@
+---
+chain:
+  - name: Simple actionchain task
+    ref: core.echo
+    parameters:
+      message: "hello from {{ src }}"
+
+default: Simple actionchain task

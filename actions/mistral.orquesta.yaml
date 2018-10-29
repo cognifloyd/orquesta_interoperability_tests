@@ -1,0 +1,6 @@
+---
+name: mistral.orquesta
+description: Call mistral from orquesta
+runner_type: orquesta
+enabled: true
+entry_point: workflows/mistral.orquesta.yaml

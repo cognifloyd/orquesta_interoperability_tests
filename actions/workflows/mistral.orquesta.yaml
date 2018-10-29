@@ -1,0 +1,16 @@
+---
+version: '1.0'
+description: Call mistral from orquesta
+
+tasks:
+  hello:
+    action: z_st2_issues.simple.mistral
+    input:
+      src: 'mistral (via orquesta)'
+    next:
+      - when: '{{ succeeded() }}'
+        do: orquesta
+  orquesta:
+    action: z_st2_issues.simple.mistral
+    input:
+      src: 'orquesta (via orquesta)'

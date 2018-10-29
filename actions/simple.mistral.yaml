@@ -1,0 +1,11 @@
+---
+name: simple.mistral
+description: Simple mistral workflow
+runner_type: mistral-v2
+enabled: true
+entry_point: workflows/simple.mistral.yaml
+parameters:
+  src:
+    description: something
+    type: string
+    default: mistral

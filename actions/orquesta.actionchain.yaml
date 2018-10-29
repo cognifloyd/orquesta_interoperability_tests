@@ -1,0 +1,6 @@
+---
+name: orquesta.actionchain
+description: Call orquesta from actionchain
+runner_type: action-chain
+enabled: true
+entry_point: workflows/orquesta.actionchain.yaml

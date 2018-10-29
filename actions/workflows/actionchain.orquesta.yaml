@@ -1,0 +1,16 @@
+---
+version: '1.0'
+description: Call actionchain from orquesta
+
+tasks:
+  actionchain:
+    action: z_st2_issues.simple.actionchain
+    input:
+      src: 'actionchain (via orquesta)'
+    next:
+      - when: '{{ succeeded() }}'
+        do: orquesta
+  orquesta:
+    action: z_st2_issues.simple.orquesta
+    input:
+      src: 'orquesta (via orquesta)'

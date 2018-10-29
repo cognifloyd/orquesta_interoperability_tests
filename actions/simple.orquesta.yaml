@@ -1,0 +1,11 @@
+---
+name: simple.orquesta
+description: Simple orquesta workflow
+runner_type: orquesta
+enabled: true
+entry_point: workflows/simple.orquesta.yaml
+parameters:
+  src:
+    description: something
+    type: string
+    default: orquesta

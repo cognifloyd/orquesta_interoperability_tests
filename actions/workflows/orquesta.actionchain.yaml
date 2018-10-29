@@ -1,0 +1,13 @@
+---
+chain:
+  - name: Call orquesta from actionchain
+    ref: z_st2_issues.simple.orquesta
+    parameters:
+      src: "orquesta (via actionchain)"
+    on-success: Call actionchain from actionchain
+  - name: Call actionchain from actionchain
+    ref: z_st2_issues.simple.actionchain
+    parameters:
+      src: "actionchain (via actionchain)"
+
+default: Call orquesta from actionchain

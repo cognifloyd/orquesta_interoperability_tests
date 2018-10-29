@@ -1,0 +1,13 @@
+---
+version: '2.0'
+
+z_st2_issues.simple.mistral:
+  description: Simple mistral workflow
+  type: direct
+  input:
+    - src
+  tasks:
+    hello:
+      action: core.echo
+      input:
+        message: 'hello from {{ _.src }}'

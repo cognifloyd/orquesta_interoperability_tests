@@ -1,0 +1,7 @@
+---
+ref: z_st2_issues
+name: z_st2_issues
+description: StackStorm issue reproducing actions
+version: 1.0.0
+author: Jacob Floyd
+email: cognifloyd@gmail.com

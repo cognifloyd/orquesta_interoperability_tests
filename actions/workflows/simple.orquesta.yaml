@@ -1,0 +1,12 @@
+---
+version: '1.0'
+description: Simple orquesta workflow
+
+input:
+  - src
+
+tasks:
+  hello:
+    action: core.echo
+    input:
+      message: 'hello from {{ ctx().src }}'

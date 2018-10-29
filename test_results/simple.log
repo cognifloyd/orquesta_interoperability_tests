@@ -1,0 +1,117 @@
+$ for action in z_st2_issues.simple.actionchain z_st2_issues.simple.mistral z_st2_issues.simple.orquesta; do st2 run -d ${action}; done
+.
++-----------------+--------------------------------------------------------------+
+| Property        | Value                                                        |
++-----------------+--------------------------------------------------------------+
+| id              | 5bd72e5243cd60774320657e                                     |
+| action.ref      | z_st2_issues.simple.actionchain                              |
+| context.user    | st2admin                                                     |
+| parameters      |                                                              |
+| status          | succeeded                                                    |
+| start_timestamp | Mon, 29 Oct 2018 15:59:14 UTC                                |
+| end_timestamp   | Mon, 29 Oct 2018 15:59:16 UTC                                |
+| result          | {                                                            |
+|                 |     "tasks": [                                               |
+|                 |         {                                                    |
+|                 |             "liveaction_id": "5bd72e5343cd602c5003571f",     |
+|                 |             "workflow": null,                                |
+|                 |             "created_at":                                    |
+|                 | "2018-10-29T15:59:14.974440+00:00",                          |
+|                 |             "updated_at":                                    |
+|                 | "2018-10-29T15:59:16.099872+00:00",                          |
+|                 |             "state": "succeeded",                            |
+|                 |             "result": {                                      |
+|                 |                 "succeeded": true,                           |
+|                 |                 "failed": false,                             |
+|                 |                 "return_code": 0,                            |
+|                 |                 "stderr": "",                                |
+|                 |                 "stdout": "hello from actionchain"           |
+|                 |             },                                               |
+|                 |             "id": "Simple actionchain task",                 |
+|                 |             "execution_id": "5bd72e5343cd602c50035720",      |
+|                 |             "name": "Simple actionchain task"                |
+|                 |         }                                                    |
+|                 |     ],                                                       |
+|                 |     "published": {}                                          |
+|                 | }                                                            |
++-----------------+--------------------------------------------------------------+
+.
++-----------------+--------------------------------------------------------------+
+| Property        | Value                                                        |
++-----------------+--------------------------------------------------------------+
+| id              | 5bd72e5543cd607743206581                                     |
+| action.ref      | z_st2_issues.simple.mistral                                  |
+| context.user    | st2admin                                                     |
+| parameters      |                                                              |
+| status          | succeeded                                                    |
+| start_timestamp | Mon, 29 Oct 2018 15:59:17 UTC                                |
+| end_timestamp   | Mon, 29 Oct 2018 15:59:18 UTC                                |
+| result          | {                                                            |
+|                 |     "tasks": [                                               |
+|                 |         {                                                    |
+|                 |             "state_info": null,                              |
+|                 |             "name": "hello",                                 |
+|                 |             "created_at": "2018-10-29 15:59:17",             |
+|                 |             "updated_at": "2018-10-29 15:59:18",             |
+|                 |             "id": "10686d94-6345-4c9e-97a9-517cf42d4b27",    |
+|                 |             "workflow_execution_id": "f35d3e03-dce1-467f-    |
+|                 | b34f-6c344ec4ca6b",                                          |
+|                 |             "state": "SUCCESS",                              |
+|                 |             "result": {                                      |
+|                 |                 "succeeded": true,                           |
+|                 |                 "failed": false,                             |
+|                 |                 "return_code": 0,                            |
+|                 |                 "stderr": "",                                |
+|                 |                 "stdout": "hello from mistral"               |
+|                 |             },                                               |
+|                 |             "published": {},                                 |
+|                 |             "input": null,                                   |
+|                 |             "workflow_name": "z_st2_issues.simple.mistral"   |
+|                 |         }                                                    |
+|                 |     ],                                                       |
+|                 |     "extra": {                                               |
+|                 |         "state_info": null,                                  |
+|                 |         "state": "SUCCESS"                                   |
+|                 |     }                                                        |
+|                 | }                                                            |
++-----------------+--------------------------------------------------------------+
+.
++-----------------+-------------------------------+
+| Property        | Value                         |
++-----------------+-------------------------------+
+| id              | 5bd72e5843cd607743206586      |
+| action.ref      | z_st2_issues.simple.orquesta  |
+| context.user    | st2admin                      |
+| parameters      |                               |
+| status          | succeeded                     |
+| start_timestamp | Mon, 29 Oct 2018 15:59:20 UTC |
+| end_timestamp   | Mon, 29 Oct 2018 15:59:21 UTC |
+| result          | {                             |
+|                 |     "output": null            |
+|                 | }                             |
++-----------------+-------------------------------+
+$ st2 execution get 5bd72e5843cd607743206586
+id: 5bd72e5843cd607743206586
+action.ref: z_st2_issues.simple.orquesta
+parameters: None
+status: succeeded (1s elapsed)
+start_timestamp: Mon, 29 Oct 2018 15:59:20 UTC
+end_timestamp: Mon, 29 Oct 2018 15:59:21 UTC
+result: 
+  output: null
++--------------------------+------------------------+-------+-----------+-------------------------------+
+| id                       | status                 | task  | action    | start_timestamp               |
++--------------------------+------------------------+-------+-----------+-------------------------------+
+| 5bd72e5843cd601bbaa34386 | succeeded (0s elapsed) | hello | core.echo | Mon, 29 Oct 2018 15:59:20 UTC |
++--------------------------+------------------------+-------+-----------+-------------------------------+
+$ st2 execution get 5bd72e5843cd601bbaa34386
+id: 5bd72e5843cd601bbaa34386
+status: succeeded (0s elapsed)
+parameters: 
+  message: hello from orquesta
+result: 
+  failed: false
+  return_code: 0
+  stderr: ''
+  stdout: hello from orquesta
+  succeeded: true
